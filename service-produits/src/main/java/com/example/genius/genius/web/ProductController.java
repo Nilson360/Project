@@ -1,7 +1,7 @@
-package com.example.genius.web;
+package com.example.genius.genius.web;
 
-import com.example.genius.domain.Product;
-import com.example.genius.service.ProductService;
+import com.example.genius.genius.domain.Product;
+import com.example.genius.genius.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

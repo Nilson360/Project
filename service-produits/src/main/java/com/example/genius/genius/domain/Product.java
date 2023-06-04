@@ -1,4 +1,4 @@
-package com.example.genius.domain;
+package com.example.genius.genius.domain;
 
 import jakarta.persistence.*;
 

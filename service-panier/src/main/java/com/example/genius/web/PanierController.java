@@ -1,19 +1,23 @@
 package com.example.genius.web;
 
+import com.example.genius.domain.Panier;
+import com.example.genius.service.PanierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 public class PanierController {
-    private final CartService cartService;
+    private final PanierService panierService;
 
     @Autowired
-    public CartController(CartService cartService) {
-        this.cartService = cartService;
+    public PanierController(PanierService panierService) {
+        this.panierService = panierService;
     }
 
     @GetMapping
-    public List<Cart> getAllCarts() {
-        return cartService.getAllCarts();
+    public List<Panier> getAllPanier() {
+        return panierService.getAllPanier();
     }
 
 }

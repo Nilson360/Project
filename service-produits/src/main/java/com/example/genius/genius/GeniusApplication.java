@@ -1,4 +1,4 @@
-package com.example.genius;
+package com.example.genius.genius;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
