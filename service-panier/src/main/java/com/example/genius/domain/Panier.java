@@ -53,4 +53,7 @@ public class Panier {
     public void setCartItems(List<PanierItem> panierItems) {
         this.panierItems = panierItems;
     }
+
+    public void setdClient(Long clientId) {
+    }
 }

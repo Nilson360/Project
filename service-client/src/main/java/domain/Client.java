@@ -1,6 +1,7 @@
 package domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "client")
@@ -10,10 +11,29 @@ public class Client {
     private Long id;
 
     private String firstName;
+    private Integer clientId;
     private String lastName;
     private String address;
     private String email;
     private String password;
+    private Date datecreation;
+    private String Name = lastName + firstName;
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public Date getDatecreation() {
+        return datecreation;
+    }
+
+    public void setDatecreation(Date datecreation) {
+        this.datecreation = datecreation;
+    }
 
     public Long getId() {
         return id;
@@ -61,5 +81,13 @@ public class Client {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 }
