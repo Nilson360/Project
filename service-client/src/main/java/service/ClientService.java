@@ -3,17 +3,37 @@ package service;
 import dataBase.ClientRepository;
 import domain.Client;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.Optional;
 
 public class ClientService {
     private final ClientRepository clientRepository;
+    private final WebClient webClient;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, WebClient webClient) {
         this.clientRepository = clientRepository;
+        this.webClient = webClient;
     }
+    /**
+     * L'api
+     */
+    // Récupère les commandes d'un client
+    /*
+    public Mono<List<Commande>> getClientCommandes(Long clientId) {
+        return this.webClient.get()
+                .uri("http://localhost:8081/commandes/clients/" + clientId)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Commande>>() {});
+    }*/
+
+    /**
+     * Méthodes de la classe
+     * @return
+     */
+
 
     // Récupère tous les clients
     public List<Client> getAllClients() {

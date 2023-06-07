@@ -1,9 +1,12 @@
 package com.example.genius.genius.service;
 
+import ch.qos.logback.core.net.server.Client;
 import com.example.genius.genius.dataBase.ProductRepository;
 import com.example.genius.genius.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,12 +14,29 @@ import java.util.Optional;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
+    private final WebClient webClient;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, WebClient webClient) {
         this.productRepository = productRepository;
+        this.webClient = webClient;
+    }
+    /**
+     * Méthode de l'api
+     *
+     */
+    // Récupère les informations du client qui a acheté un produit spécifique
+    public Mono<Client> getClientByProductId(Long productId) {
+        return this.webClient.get()
+                .uri("http://localhost:8080/client/product/" + productId)
+                .retrieve()
+                .bodyToMono(Client.class);
     }
 
+    /**
+     *  Méthodes de la classe
+     * @return
+     */
     // Récupère tous les produits
     public List<Product> getAllProducts() {
         return productRepository.findAll();

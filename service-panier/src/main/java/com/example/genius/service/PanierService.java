@@ -3,9 +3,12 @@ package com.example.genius.service;
 import com.example.genius.dataBase.PanierItemsRepository;
 import com.example.genius.dataBase.PanierRepository;
 import com.example.genius.domain.Panier;
+import com.example.genius.genius.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.integration.IntegrationProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,13 +17,31 @@ import java.util.Optional;
 public class PanierService extends IntegrationProperties.RSocket.Client {
     private final PanierRepository panierRepository;
     private final PanierItemsRepository panierItemsRepository;
+    private final WebClient webClient;
 
     @Autowired
-    public PanierService(PanierRepository panierRepository, PanierItemsRepository panierItemsRepository) {
+    public PanierService(PanierRepository panierRepository, PanierItemsRepository panierItemsRepository, WebClient webClient) {
         this.panierRepository = panierRepository;
         this.panierItemsRepository = panierItemsRepository;
+        this.webClient = webClient;
     }
 
+
+    /**
+     * L'api
+     */
+    // Récupère les informations du produit dans le panier
+    public Mono<Product> getProductInPanier(Long panierId) {
+        return this.webClient.get()
+                .uri("http://localhost:8082/products/paniers/" + panierId)
+                .retrieve()
+                .bodyToMono(Product.class);
+    }
+    /**
+     * Méthodes de la classe
+     *
+     * @return
+     */
     // Récupère tous les paniers
     public List<Panier> getAllPaniers() {
         return panierRepository.findAll();

@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clients")
+
 public class ClientController {
     private final ClientService clientService;
 
@@ -18,13 +19,13 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    // Récupère tous les clients
+    // Récuperer tous les clients
     @GetMapping
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
 
-    // Récupère un client par son identifiant
+    // Récuperer un client par son identifiant
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable Long id) {
         Client client = clientService.getClientById(id);
@@ -35,13 +36,13 @@ public class ClientController {
         }
     }
 
-    // Crée un nouveau client
+    // Créer un nouveau client
     @PostMapping
     public Client createClient(@RequestBody Client client) {
         return clientService.createClient(client);
     }
 
-    // Met à jour un client existant
+    // Mettre à jour un client existant
     @PutMapping("/{id}")
     public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client updatedClient) {
         Client client = clientService.updateClient(id, updatedClient);
@@ -52,7 +53,7 @@ public class ClientController {
         }
     }
 
-    // Supprime un client
+    // Supprimer un client
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
